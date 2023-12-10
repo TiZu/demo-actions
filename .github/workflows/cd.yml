@@ -11,11 +11,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Echo
-        run: echo "1"
+        run: echo "Build completed"
 
-  deploy:
-    environment: ${{ github.ref_name == 'main' && 'production' || 'development' }}
+  deploy-development:
+    needs: build
+    environment: development
     runs-on: ubuntu-latest
     steps:
       - name: Echo
-        run: echo "2"
+        run: echo "Successfully deployed to development"
+
+  deploy-production:
+    needs: build
+    environment: production
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo
+        run: echo "Successfully deployed to production"
