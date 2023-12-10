@@ -9,10 +9,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    steps:
+      - name: Echo
+        run: echo "1"
 
   deploy:
     environment: ${{ github.ref_name == 'main' && 'production' || 'development' }}
     runs-on: ubuntu-latest
     steps:
       - name: Echo
-        run: echo ""
+        run: echo "2"
